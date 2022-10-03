@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "datvi-frontend.fullname" . }}
+  labels:
+    {{- include "datvi-frontend.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      # targetPort: http
+      # protocol: TCP
+      # name: http
+  selector:
+    {{- include "datvi-frontend.selectorLabels" . | nindent 4 }}
